@@ -7,8 +7,18 @@ myLibrary.push(book1);
 myLibrary.push(book2);
 myLibrary.push(book3);
 
+let cardScreen = document.querySelector('.card-screen');
+
 const submitButton = document.querySelector('.submit');
 submitButton.addEventListener('click', addBookToLibrary);
+
+let toggleForm = document.querySelector('.toggle-form');
+toggleForm.addEventListener('click', () => {
+  if (document.querySelector('.form').style.display === "block") { document.querySelector('.form').style.display = "none" }
+  else { document.querySelector('.form').style.display = "block" }
+});
+
+loadBooksDiplays();
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -48,11 +58,10 @@ function addBookToLibrary() {
   loadBooksDiplays();
 }
 
-let cardScreen = document.querySelector('.card-screen');
-
 function loadBooksDiplays() {
   for (let i = 0; i < myLibrary.length; i++) {
     let card = document.createElement('div');
+    // Loading book info
     let titleDisplay = document.createElement('div');
     let authorDisplay = document.createElement('div');
     let pagesDisplay = document.createElement('div');
@@ -65,6 +74,16 @@ function loadBooksDiplays() {
     card.appendChild(authorDisplay);
     card.appendChild(pagesDisplay);
     card.appendChild(readDisplay);
+    // Adding delete button
+    let deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList.add('delete-button');
+    deleteButton.addEventListener('click', () => {
+      myLibrary.splice(i, 1);
+      clearBooksDisplay();
+      loadBooksDiplays();
+    });
+    card.appendChild(deleteButton);
     card.classList.add('card');
     cardScreen.appendChild(card);
   }
@@ -77,11 +96,3 @@ function clearBooksDisplay() {
     card = cardScreen.lastElementChild;
   }
 }
-
-let toggleForm = document.querySelector('.toggle-form');
-toggleForm.addEventListener('click', () => {
-  if (document.querySelector('.form').style.display === "block") { document.querySelector('.form').style.display = "none" }
-  else { document.querySelector('.form').style.display = "block" }
-});
-
-loadBooksDiplays();

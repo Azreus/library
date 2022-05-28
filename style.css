@@ -50,3 +50,8 @@ body {
   bottom: 100px;
   right: 24px;
 }
+
+.delete-button {
+  border: none;
+  background-color: rgb(255, 81, 81);
+}
