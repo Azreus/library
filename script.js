@@ -44,6 +44,8 @@ function addBookToLibrary() {
     document.querySelector('#read').checked = false;
     document.querySelector('#not_read').checked = false;
   }
+  clearBooksDisplay();
+  loadBooksDiplays();
 }
 
 let cardScreen = document.querySelector('.card-screen');
@@ -75,5 +77,11 @@ function clearBooksDisplay() {
     card = cardScreen.lastElementChild;
   }
 }
+
+let toggleForm = document.querySelector('.toggle-form');
+toggleForm.addEventListener('click', () => {
+  if (document.querySelector('.form').style.display === "block") { document.querySelector('.form').style.display = "none" }
+  else { document.querySelector('.form').style.display = "block" }
+});
 
 loadBooksDiplays();
