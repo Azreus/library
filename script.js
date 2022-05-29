@@ -30,6 +30,22 @@ function Book(title, author, pages, read) {
   }
 }
 
+Book.prototype.changeReadStatus = function(index) {
+  console.log(index);
+  // Finding the card element linked to the current object
+  let btn = document.querySelector(`[data-index="${index}"]`);
+  // And then finding the div element with the read status
+  let readStatus = btn.parentNode.querySelector('.read-status');
+  if (this.read) {
+    this.read = false;
+    readStatus.textContent = 'Not read';
+  } else {
+    this.read = true;
+    readStatus.textContent = 'Read';
+  }
+  console.log(readStatus);
+}
+
 function addBookToLibrary() {
   let title = document.querySelector('#title').value;
   let author = document.querySelector('#author').value;
@@ -70,6 +86,7 @@ function loadBooksDiplays() {
     authorDisplay.textContent = myLibrary[i].author;
     pagesDisplay.textContent = `${myLibrary[i].pages} pages`;
     readDisplay.textContent = myLibrary[i].read ? 'Read' : 'Not read';
+    readDisplay.classList.add('read-status');
     card.appendChild(titleDisplay);
     card.appendChild(authorDisplay);
     card.appendChild(pagesDisplay);
@@ -78,12 +95,21 @@ function loadBooksDiplays() {
     let deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
     deleteButton.classList.add('delete-button');
+    deleteButton.setAttribute('data-index', i)
     deleteButton.addEventListener('click', () => {
       myLibrary.splice(i, 1);
       clearBooksDisplay();
       loadBooksDiplays();
     });
     card.appendChild(deleteButton);
+    // Adding 'change read status' button
+    let chgReadStatusBtn = document.createElement('button');
+    chgReadStatusBtn.textContent = 'Change Read Status';
+    chgReadStatusBtn.classList.add('read-button');
+    chgReadStatusBtn.addEventListener('click', () => {
+      myLibrary[i].changeReadStatus(i);
+    });
+    card.appendChild(chgReadStatusBtn);
     card.classList.add('card');
     cardScreen.appendChild(card);
   }

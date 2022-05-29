@@ -38,6 +38,8 @@ body {
   right: 24px;
   padding: 12px 23px;
   font-size: 17px;
+  cursor: pointer;
+  box-shadow: 5px 5px;
 }
 
 .form {
@@ -49,9 +51,19 @@ body {
   position: fixed;
   bottom: 100px;
   right: 24px;
+  border: 2px solid #3f3f3f;
+  box-shadow: 0px 0px 10px #3d3d3d;
+  box-sizing: border-box;
 }
 
 .delete-button {
   border: none;
   background-color: rgb(255, 81, 81);
+  cursor: pointer;
+}
+
+.read-button {
+  border: none;
+  background-color: rgb(67, 142, 255);
+  cursor: pointer;
 }
