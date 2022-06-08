@@ -94,7 +94,9 @@ function loadBooksDiplays() {
     let card = document.createElement('div');
     // Loading book info
     let titleDisplay = document.createElement('div');
+    titleDisplay.classList.add('card-title');
     let authorDisplay = document.createElement('div');
+    authorDisplay.classList.add('card-author');
     let pagesDisplay = document.createElement('div');
     let readDisplay = document.createElement('div');
     titleDisplay.textContent = myLibrary[i].title;
@@ -117,6 +119,7 @@ function loadBooksDiplays() {
       loadBooksDiplays();
     });
     card.appendChild(deleteButton);
+    card.appendChild(document.createElement('br'));
     // Adding 'change read status' button
     let chgReadStatusBtn = document.createElement('button');
     chgReadStatusBtn.textContent = 'Change Read Status';
