@@ -1,3 +1,28 @@
+/*
+function Book(title, author, pages, read) {
+  this.title = title;
+  this.author = author;
+  this.pages = pages;
+  this.read = read;
+  this.info = function() {
+    return `${title} by ${author}, ${pages} pages, ${read ? 'read' : 'not read yet'}.`;
+  }
+}
+*/
+
+class Book {
+  constructor(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
+
+  info() {
+    return `${title} by ${author}, ${pages} pages, ${read ? 'read' : 'not read yet'}.`;
+  }
+}
+
 let myLibrary = [];
 
 let book1 = new Book('The Hobbit', 'J.R.R. Tolkien', 300, true);
@@ -19,16 +44,6 @@ toggleForm.addEventListener('click', () => {
 });
 
 loadBooksDiplays();
-
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-  this.info = function() {
-    return `${title} by ${author}, ${pages} pages, ${read ? 'read' : 'not read yet'}.`;
-  }
-}
 
 Book.prototype.changeReadStatus = function(index) {
   console.log(index);
